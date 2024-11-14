@@ -1,0 +1,77 @@
+<!-- HEADER SECTION -->
+<div class="p-6 bg-white shadow-md flex justify-between items-center">
+  <div class="flex items-center space-x-4">
+    <img routerLink="/" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
+    <span class="font-bold text-4xl">MacroFusion</span>
+  </div>
+  <img routerLink="/user" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
+</div>
+
+<!-- MEALS CONTENT -->
+<div class="mt-6 px-6">
+  <!-- DESAYUNO SECTION -->
+  <h2 class="text-2xl font-bold mb-2">Desayuno</h2>
+  <div class="flex justify-between items-center mb-2">
+    <span class="text-xl font-bold">Resumen</span>
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Agregar alimento</button>
+  </div>
+  <div class="bg-gray-100 p-4 rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3 px-6">Alimento</th>
+          <th scope="col" class="py-3 px-6">Aporte</th>
+          <th scope="col" class="py-3 px-6">Grasas</th>
+          <th scope="col" class="py-3 px-6">Cantidad</th>
+          <th scope="col" class="py-3 px-6">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg-white border-b">
+          <td class="py-4 px-6">Huevo</td>
+          <td class="py-4 px-6">60 Kcal</td>
+          <td class="py-4 px-6">4 gr</td>
+          <td class="py-4 px-6">1 pieza</td>
+          <td class="py-4 px-8">
+            <button class="text-blue-600 hover:text-blue-800 mr-2">
+              <!-- <i class="fas fa-edit"></i> -->
+              <img src="assets/editar.png" class="w-7" alt="">
+            </button>
+            <button class="text-red-600 hover:text-red-800">
+              <!-- <i class="fas fa-trash"></i> -->
+              <img src="assets/eliminar.png" class="w-7" alt="">
+            </button>
+          </td>
+        </tr>
+        <tr class="bg-white border-b">
+          <td class="py-4 px-6">Naranja</td>
+          <td class="py-4 px-6">55 Kcal</td>
+          <td class="py-4 px-6">3 gr</td>
+          <td class="py-4 px-6">1 pieza</td>
+          <td class="py-4 px-6">
+            <button class="text-blue-600 hover:text-blue-800 mr-2">
+              <!-- <i class="fas fa-edit"></i> -->
+              <img src="assets/editar.png" class="w-7" alt="">
+            </button>
+            <button class="text-red-600 hover:text-red-800">
+              <!-- <i class="fas fa-trash"></i> -->
+              <img src="assets/eliminar.png" class="w-7" alt="">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- COMIDA SECTION -->
+  <h2 class="text-2xl font-bold mb-2 mt-6">Comida</h2>
+  <div class="bg-gray-100 p-4 rounded-lg">
+    <!-- Placeholder for dynamically loaded meal items -->
+  </div>
+
+  <!-- CENA SECTION -->
+  <h2 class="text-2xl font-bold mb-2 mt-6">Cena</h2>
+  <div class="bg-gray-100 p-4 rounded-lg">
+    <!-- Placeholder for dynamically loaded meal items -->
+  </div>
+</div>

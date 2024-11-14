@@ -1,0 +1,49 @@
+<!-- EDIT PROFILE -->
+<div class="min-h-screen bg-cover bg-center" style="background-image: url('/assets/editBack.jpg');">
+  <div class="p-6 bg-white shadow-md flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+      <img routerLink="" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
+      <span class="font-bold text-6xl pl-6">MacroFusion</span>
+    </div>
+    <img routerLink="/personal-info" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
+  </div>
+
+  <div class="flex flex-col items-center justify-center h-full pt-24 pb-24">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-8/12">
+      <form class="space-y-6">
+        <div class="grid grid-cols-2 gap-6">
+          <div>
+            <label for="height" class="block text-2xl font-semibold text-gray-700">Estatura:</label>
+            <input type="text" id="height" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej. 170 cm">
+          </div>
+          <div>
+            <label for="weight" class="block text-2xl font-semibold text-gray-700">Peso:</label>
+            <input type="text" id="weight" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej. 70 kg">
+          </div>
+          <div>
+            <label for="age" class="block text-2xl font-semibold text-gray-700">Edad:</label>
+            <input type="number" id="age" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej. 30">
+          </div>
+          <div>
+            <label for="sex" class="block text-2xl font-semibold text-gray-700">Sexo:</label>
+            <select id="sex" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+              <option value="male">Hombre</option>
+              <option value="female">Mujer</option>
+            </select>
+          </div>
+          <div>
+            <label for="activity" class="block text-2xl font-semibold text-gray-700">Índice de actividad:</label>
+            <select id="activity" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+              <option value="low">Bajo</option>
+              <option value="medium">Moderado</option>
+              <option value="high">Alto</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex justify-end mt-6">
+          <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<!-- ADD FOOD -->
+<div class="min-h-screen bg-cover bg-center" style="background-image: url('/assets/AddMealBack.jpg');">
+  <div class="p-6 bg-white shadow-md flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+      <img routerLink="/" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
+      <span class="font-bold text-6xl">Agregar alimento</span>
+    </div>
+    <img routerLink="/user" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
+  </div>
+
+  <div class="flex flex-col items-center justify-center h-full pt-24 pb-24">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-8/12">
+      <form class="space-y-6">
+        <div>
+          <label for="name" class="block text-2xl font-semibold text-gray-700">Nombre:</label>
+          <input type="text" id="name" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej. Manzana">
+        </div>
+        <div>
+          <label for="brand" class="block text-2xl font-semibold text-gray-700">Marca:</label>
+          <input type="text" id="brand" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="(Opcional)">
+        </div>
+        <div>
+          <label for="calories" class="block text-2xl font-semibold text-gray-700">Calorías:</label>
+          <input type="number" id="calories" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej. 100">
+        </div>
+        <div>
+          <label for="protein" class="block text-2xl font-semibold text-gray-700">Proteína:</label>
+          <input type="number" id="protein" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej. 5g">
+        </div>
+        <div>
+          <label for="carbs" class="block text-2xl font-semibold text-gray-700">Carbohidratos:</label>
+          <input type="number" id="carbs" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej. 20g">
+        </div>
+        <div>
+          <label for="fat" class="block text-2xl font-semibold text-gray-700">Grasas:</label>
+          <input type="number" id="fat" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej. 0g">
+        </div>
+        <div>
+          <label for="serving-size" class="block text-2xl font-semibold text-gray-700">Tamaño por porción:</label>
+          <input type="text" id="serving-size" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej. 100g">
+        </div>
+        <div>
+          <label for="image" class="block text-2xl font-semibold text-gray-700">Imagen (opcional):</label>
+          <input type="file" id="image" class="w-full h-12 px-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+        </div>
+        <div class="flex justify-end space-x-4 mt-4">
+          <button routerLink="/canasta" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Cancelar</button>
+          <button routerLink="/canasta" type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
