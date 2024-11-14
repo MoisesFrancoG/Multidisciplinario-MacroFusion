@@ -1,0 +1,36 @@
+<!-- HEADER SECTION -->
+<div class="p-6 bg-white shadow-md flex justify-between items-center">
+  <div class="flex items-center space-x-4">
+    <img routerLink="/" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
+    <span class="font-bold text-4xl">Canasta de alimentos</span>
+  </div>
+  <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" routerLink="/add-food">Agregar alimento</button>
+</div>
+
+<!-- BASKET CONTENT -->
+<div class="px-6 py-4">
+  <div class="grid grid-cols-3 gap-4">
+    <!-- Example Card -->
+    <div class="bg-white shadow rounded-lg p-4 border">
+      <img src="/assets/cereal.jpg" alt="Huevo" class="w-full h-40 object-cover rounded-lg">
+      <div class="mt-2">
+        <h3 class="text-lg font-bold">Huevo</h3>
+        <p>Marca: <span class="text-sm text-gray-600">Generico</span></p>
+        <p>150 kcal Por:100g</p>
+        <p>Proteína: 25g</p>
+        <p>Carbohidratos: 60g</p>
+        <p>Grasas: 2g</p>
+        <div class="flex justify-between mt-2">
+          <button class="text-green-600 hover:text-green-800">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="text-red-600 hover:text-red-800">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add more cards as needed -->
+  </div>
+</div>

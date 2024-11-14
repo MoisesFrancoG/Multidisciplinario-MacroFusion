@@ -1,0 +1,59 @@
+<!-- REGISTER -->
+<div class="p-6 bg-white shadow-md flex justify-between items-center">
+  <div class="flex items-center space-x-4">
+    <img routerLink="" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
+    <span class="font-bold text-6xl pl-6">MacroFusion</span>
+  </div>
+  <img routerLink="" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
+</div>
+
+<div class="flex ">
+
+  <div class="w-1/2 bg-cover border" style="background-image: url('/assets/register2.jpg');"></div>
+  <div class="w-1/2 flex flex-col justify-center items-center pb-8 ">
+    <h1 class="text-4xl font-bold mb-4 pt-6">¡HOLA, REGISTRATE AHORA!</h1>
+    <form class="w-4/5 max-w-2xl" >
+      <div class="mb-4">
+        <label for="name" class="block text-lg mb-2">NOMBRE:</label>
+        <input id="name" type="text" placeholder="Ej. Angel" name="name" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-lg mb-2">CORREO ELECTRÓNICO:</label>
+        <input id="email" type="email"  name="email" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-lg mb-2">CONTRASEÑA:</label>
+        <input id="password" type="password"  name="password" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+      </div>
+      <div class="mb-4">
+        <label for="height" class="block text-lg mb-2">ESTATURA (cm):</label>
+        <input id="height" type="number"  name="height" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+      </div>
+      <div class="mb-4">
+        <label for="weight" class="block text-lg mb-2">PESO (kg):</label>
+        <input id="weight" type="number"  name="weight" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+      </div>
+      <div class="mb-4">
+        <label for="age" class="block text-lg mb-2">EDAD:</label>
+        <input id="age" type="number"  name="age" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+      </div>
+      <div class="mb-4">
+        <label for="sex" class="block text-lg mb-2">SEXO:</label>
+        <select id="sex" name="gender" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+          <option value="male">Hombre</option>
+          <option value="female">Mujer</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="activity" class="block text-lg mb-2">ÍNDICE DE ACTIVIDAD:</label>
+        <select id="activity" name="activityIndex" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+          <option value="low">Bajo</option>
+          <option value="moderate">Moderado</option>
+          <option value="high">Alto</option>
+        </select>
+      </div>
+      <button routerLink="/login" type="submit" class="w-full bg-green-700 hover:bg-green-600 text-white py-2 rounded mt-4">REGISTRARSE</button>
+    </form>
+    <p class="mt-4">¿YA TIENES UNA CUENTA? <a routerLink="/login" class="text-blue-500">INICIAR SESIÓN</a></p>
+  </div>
+</div>
