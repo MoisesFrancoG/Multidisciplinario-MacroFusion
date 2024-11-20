@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exercises-section',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './exercises-section.component.css'
 })
 export class ExercisesSectionComponent {
+
+  constructor(private router: Router) {}
+
+  navigateToDetail(zone: string){
+    this.router.navigate(['/exercise-detail', {zone: zone}])
+  }
 
 }
