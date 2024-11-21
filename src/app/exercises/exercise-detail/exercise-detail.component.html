@@ -1,0 +1,26 @@
+<div class="p-6 bg-white shadow-md flex justify-between items-center">
+  <div class="flex items-center space-x-4">
+    <img routerLink="/dashboard" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
+    <span class="font-bold text-6xl pl-6">MacroFusion</span>
+  </div>
+  <img routerLink="/personal-info" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
+</div>
+
+
+<div class="container mx-auto p-4">
+  <h2 class="text-center text-lime-600 text-2xl font-bold mb-4">{{ zone }}</h2>
+
+  <div class="flex mb-4">
+    <label for="zoneSelect" class="block text-lg font-medium text-gray-700">Nivel:</label>
+    <select id="zoneSelect"  class="mt-1 block w-full pl-3 pr-10  text-base border-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+      <option > Principiante </option>
+      <option > Intermedio </option>
+      <option > Avanzado </option>
+    </select>
+  </div>
+
+  <div  class="bg-white shadow overflow-hidden sm:rounded-lg p-4 mb-4">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">Exercise name</h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-500">Exercise description</p>
+  </div>
+</div>
