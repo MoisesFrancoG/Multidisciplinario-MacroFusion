@@ -26,7 +26,8 @@ export class AddFoodComponent {
     carbohidratos: 0,
     grasa: 0,
     porcion: 100,
-    tipomedida: 'gr'
+    tipomedida: 'gr',
+    categoria: ''
   };
 
   constructor(
