@@ -12,6 +12,7 @@ export class FoodService {
 
   constructor(private http: HttpClient) { }
 
+  
   getFoodById(id: number): Observable<Food> {
     return this.http.get<Food>(`${this.apiUrl}/${id}`);
   }
