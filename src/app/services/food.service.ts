@@ -9,11 +9,15 @@ import { Food } from '../models/food';
 export class FoodService {
 
   private apiUrl = 'http://127.0.0.1:8000/api/alimentos';
-
+  private foodurl = 'http://127.0.0.1:8000/api/usuario'
   constructor(private http: HttpClient) { }
 
   getFoodById(id: number): Observable<Food> {
     return this.http.get<Food>(`${this.apiUrl}/${id}`);
+  }
+
+  getFoodsId(id: number): Observable<Food[]> {
+    return this.http.get<Food[]>(`${this.foodurl}/${id}`)
   }
 
   getFoods(): Observable<Food[]> {
