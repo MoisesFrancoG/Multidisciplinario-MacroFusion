@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { ExercisesRoutingModule } from './exercises-routing.module';
 import { ExercisesSectionComponent } from './exercises-section/exercises-section.component';
+import { ExerciseDetailComponent } from './exercise-detail/exercise-detail.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    ExercisesSectionComponent
+    ExercisesSectionComponent,
+    ExerciseDetailComponent
   ],
   imports: [
     CommonModule,

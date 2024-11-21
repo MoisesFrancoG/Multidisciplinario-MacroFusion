@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ExercisesModule } from './exercises/exercises.module';
 import { MealsModule } from './meals/meals.module';
 import { BasketModule } from './basket/basket.module';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,9 @@ import { BasketModule } from './basket/basket.module';
     UserModule,
     ExercisesModule,
     MealsModule,
-    BasketModule
+    BasketModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

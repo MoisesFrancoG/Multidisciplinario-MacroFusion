@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BasketRoutingModule } from './basket-routing.module';
 import { BasketDashboardComponent } from './basket-dashboard/basket-dashboard.component';
 import { AddFoodComponent } from './add-food/add-food.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AddFoodComponent } from './add-food/add-food.component';
   ],
   imports: [
     CommonModule,
-    BasketRoutingModule
+    BasketRoutingModule,
+    FormsModule,
   ]
 })
 export class BasketModule { }
