@@ -3,32 +3,23 @@ import { Router } from '@angular/router';
 import { Food } from '../../models/food';
 import { FoodService } from '../../services/food.service';
 
-
 @Component({
   selector: 'app-basket-dashboard',
   templateUrl: './basket-dashboard.component.html',
-  styleUrl: './basket-dashboard.component.css'
+  styleUrl: './basket-dashboard.component.css',
 })
 export class BasketDashboardComponent implements OnInit {
-
   foods: Food[] = [];
-
+  idsuario = parseInt(localStorage.getItem('user_id') || '0', 10);
   constructor(private foodService: FoodService, private router: Router) {}
 
   ngOnInit() {
-    console.log(this.foods)
     this.loadFoods();
   }
 
   loadFoods() {
-    this.foodService.getFoods().subscribe({
-      next: (foods) => {
-        console.log(foods)
-        this.foods = foods;
-      },
-      error: (error) => {
-        console.error('Error loading foods:', error);
-      }
+    this.foodService.getFoodsId(this.idsuario).subscribe((response) => {
+      (this.foods = response), console.log(response);
     });
   }
 
@@ -41,7 +32,7 @@ export class BasketDashboardComponent implements OnInit {
       error: (error) => {
         alert('Error al eliminar el alimento');
         console.error('Delete error', error);
-      }
+      },
     });
   }
 
@@ -56,5 +47,4 @@ export class BasketDashboardComponent implements OnInit {
       console.error('Attempted to edit food without an ID');
     }
   }
-
 }
