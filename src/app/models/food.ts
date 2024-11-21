@@ -9,4 +9,5 @@ export interface Food {
   grasa: number;
   porcion: number;
   tipomedida: string;
+  categoria: string;
 }
