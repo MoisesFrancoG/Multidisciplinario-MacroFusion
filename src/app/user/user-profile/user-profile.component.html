@@ -7,32 +7,35 @@
     <img routerLink="/personal-info" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
   </div>
 
-  <div class="p-6 max-w-4xl mx-auto rounded-lg shadow-md mt-6">
-    <h2 class="text-3}xl text-white font-bold text-center mb-4">Datos Personales</h2>
-    <div class="grid grid-cols-2 gap-4">
-      <div class="bg-green-500 text-white p-4 rounded-lg">
-        <h3 class="text-xl font-semibold">Estatura</h3>
-        <p class="text-lg">1.63 cm</p>
+  <div class="p-10 max-w-6xl mx-auto mt-4">
+    <h2 class="text-5xl text-white font-bold text-center mb-10">Datos Personales</h2>
+    <div class="grid grid-cols-3 ">
+      <div class="bg-green-800 text-white p-6 flex flex-col items-center ">
+        <span class="text-4xl font-bold">Estatura</span>
+        <span class="text-3xl font-semibold">1.63 cm</span>
       </div>
-      <div class="bg-green-500 text-white p-4 rounded-lg">
-        <h3 class="text-xl font-semibold">Índice de actividad</h3>
-        <p class="text-lg">Regularmente</p>
+      <div class="bg-green-600 text-white p-6 flex flex-col items-center col-span-2 ">
+        <span class="text-4xl font-bold">Índice de actividad</span>
+        <span class="text-3xl font-semibold">Regularmente</span>
       </div>
-      <div class="bg-green-500 text-white p-4 rounded-lg">
-        <h3 class="text-xl font-semibold">Peso</h3>
-        <p class="text-lg">58 kg</p>
+      <div class="bg-green-600 text-white p-6 flex flex-col items-center ">
+        <span class="text-4xl font-bold">Peso</span>
+        <span class="text-3xl font-semibold">58 kg</span>
       </div>
-      <div class="bg-green-500 text-white p-4 rounded-lg">
-        <h3 class="text-xl font-semibold">Sexo</h3>
-        <p class="text-lg">Mujer</p>
+      <div class="bg-green-500 text-white p-6 flex flex-col items-center ">
+        <span class="text-4xl font-bold">Sexo</span>
+        <span class="text-3xl font-semibold">Mujer</span>
       </div>
-      <div class="bg-green-500 text-white p-4 rounded-lg">
-        <h3 class="text-xl font-semibold">Edad</h3>
-        <p class="text-lg">20</p>
+      <div class="bg-green-900 text-white p-6 flex flex-col items-center ">
+        <span class="text-4xl font-bold">Edad</span>
+        <span class="text-3xl font-semibold">20</span>
       </div>
     </div>
-    <div class="flex justify-center mt-6">
-      <button routerLink="/edit-profile" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Editar</button>
+    <div class="flex justify-end mt-10">
+      <button routerLink="/edit-profile" class="bg-green-600 hover:bg-green-500 text-black font-bold py-3 px-14 text-3xl rounded-lg">
+        Editar
+      </button>
     </div>
   </div>
+
 </div>
