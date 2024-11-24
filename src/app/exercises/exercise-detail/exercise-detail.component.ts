@@ -1,27 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Ejercicio } from '../../models/Ejercicio';
+import { EjerciciosService } from '../../services/ejecicios.service';
 
 @Component({
   selector: 'app-exercise-detail',
   templateUrl: './exercise-detail.component.html',
-  styleUrl: './exercise-detail.component.css'
+  styleUrls: ['./exercise-detail.component.css']
 })
-export class ExerciseDetailComponent {
+export class ExerciseDetailComponent implements OnInit {
+  zone: string = ''; 
+  dificultad: string = 'Principiante'; 
+  niveles: string[] = ['Principiante', 'Intermedio', 'Avanzado'];
+  ejercicios: Ejercicio[] = []; 
+  allEjercicios: Ejercicio[] = []; 
 
-  zone: string = '';
+  constructor(private route: ActivatedRoute, private ejerciciosService: EjerciciosService) {}
 
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit() {
+  ngOnInit(): void {
     const zone = this.route.snapshot.paramMap.get('zone');
     if (zone) {
       this.zone = zone;
+      this.loadEjercicios();
     } else {
-      // Manejar el caso de 'null' aquí. Ejemplo:
-      this.zone = 'Valor por defecto';
       console.error('El parámetro zona es necesario');
     }
   }
 
+  onLevelChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.dificultad = selectElement.value;
+    this.filterEjercicios();
+  }
 
+  loadEjercicios(): void {
+    this.ejerciciosService.getEjercicios().subscribe({
+      next: (data) => {
+        console.log(data)
+        this.allEjercicios = data;
+        this.filterEjercicios();
+      },
+      error: (err) => console.error('Error al cargar ejercicios', err)
+    });
+  }
+
+  filterEjercicios(): void {
+    this.ejercicios = this.allEjercicios.filter(
+      (ejercicio) =>
+        ejercicio.musculotrabajado === this.zone && ejercicio.dificultad === this.dificultad
+    );
+  }
 }
