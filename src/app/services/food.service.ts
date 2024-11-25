@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Food } from '../models/food';
+import { FoodConsumption } from '../models/food-consumption';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,11 @@ import { Food } from '../models/food';
 export class FoodService {
 
   private apiUrl = 'http://127.0.0.1:8000/api/alimentos';
-  private foodurl = 'http://127.0.0.1:8000/api/usuario'
+  private foodurl = 'http://127.0.0.1:8000/api/usuario';
+  private consumoUrl = 'http://127.0.0.1:8000/api/consumo/dia';
+  private FoodConsumption = 'http://127.0.0.1:8000/api/lista';
+  private getFoodListConsumption = 'http://127.0.0.1:8000/api/listaalimentos';
+
   constructor(private http: HttpClient) { }
 
   getFoodById(id: number): Observable<Food> {
@@ -34,6 +39,29 @@ export class FoodService {
 
   updateFood(id: number, food: Food): Observable<Food> {
     return this.http.put<Food>(`${this.apiUrl}/${id}`, food);
+  }
+
+  // Función para obtener el idconsumo
+  getConsumoId(userId: number): Observable<{ idconsumo: number }> {
+    return this.http.get<{ idconsumo: number }>(`${this.consumoUrl}/${userId}`);
+  }
+
+  // Método para hacer POST del alimento con la nueva categoría y porción
+  postFoodConsumption(food: FoodConsumption): Observable<any> {
+    return this.http.post<any>(this.FoodConsumption, food);
+  }
+
+  // Método para obtener los alimentos por idcomida
+  getFoodListByConsumption(idcomida: number): Observable<FoodConsumption[]> {
+    return this.http.get<FoodConsumption[]>(`${this.getFoodListConsumption}/${idcomida}`);
+  }
+
+  updateFoodConsumption(id: number, updatedData: Partial<FoodConsumption>): Observable<FoodConsumption> {
+    return this.http.put<FoodConsumption>(`http://127.0.0.1:8000/api/lista/${id}`, updatedData);
+  }
+
+  deleteFoodConsumption(id: number): Observable<void> {
+    return this.http.delete<void>(`http://127.0.0.1:8000/api/list/${id}`);
   }
 
 }

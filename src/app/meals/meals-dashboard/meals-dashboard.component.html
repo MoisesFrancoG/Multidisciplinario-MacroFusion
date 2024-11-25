@@ -1,7 +1,7 @@
 <!-- HEADER SECTION -->
 <div class="p-6 bg-white shadow-md flex justify-between items-center">
   <div class="flex items-center space-x-4">
-    <img routerLink="/" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
+    <img routerLink="/dashboard" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
     <span class="font-bold text-4xl">MacroFusion</span>
   </div>
   <img routerLink="/user" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
@@ -9,11 +9,12 @@
 
 <!-- MEALS CONTENT -->
 <div class="mt-6 px-6">
-  <!-- DESAYUNO SECTION -->
+
+  <!-- SECCIÓN DE DESAYUNO -->
   <h2 class="text-2xl font-bold mb-2">Desayuno</h2>
   <div class="flex justify-between items-center mb-2">
     <span class="text-xl font-bold">Resumen</span>
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Agregar alimento</button>
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="openModal()">Agregar alimento</button>
   </div>
   <div class="bg-gray-100 p-4 rounded-lg">
     <table class="w-full text-sm text-left text-gray-500">
@@ -22,40 +23,26 @@
           <th scope="col" class="py-3 px-6">Alimento</th>
           <th scope="col" class="py-3 px-6">Aporte</th>
           <th scope="col" class="py-3 px-6">Grasas</th>
+          <th scope="col" class="py-3 px-6">Proteinas</th>
+          <th scope="col" class="py-3 px-6">Carbohidratos</th>
           <th scope="col" class="py-3 px-6">Cantidad</th>
           <th scope="col" class="py-3 px-6">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="bg-white border-b">
-          <td class="py-4 px-6">Huevo</td>
-          <td class="py-4 px-6">60 Kcal</td>
-          <td class="py-4 px-6">4 gr</td>
-          <td class="py-4 px-6">1 pieza</td>
+        <tr *ngFor="let meal of desayunoMeals" class="bg-white border-b">
+          <td class="py-4 px-6">{{ meal.nombre }}</td>
+          <td class="py-4 px-6">{{ meal.calorias }} Kcal</td>
+          <td class="py-4 px-6">{{ meal.grasa }} gr</td>
+          <td class="py-4 px-6">{{ meal.proteina }} gr</td>
+          <td class="py-4 px-6">{{ meal.carbohidratos }} gr</td>
+          <td class="py-4 px-6">{{ meal.porcion }} {{ meal.tipomedida }}</td>
           <td class="py-4 px-6">
-            <button class="text-blue-600 hover:text-blue-800 mr-2">
-              <!-- <i class="fas fa-edit"></i> -->
-              <img src="assets/editar.png" class="w-7" alt="">
+            <button class="mr-2 bg-lime-500 p-2 rounded-lg">
+              <img src="assets/editar.png" class="w-7" alt="Editar">
             </button>
-            <button class="text-red-600 hover:text-red-800">
-              <!-- <i class="fas fa-trash"></i> -->
-              <img src="assets/eliminar.png" class="w-7" alt="">
-            </button>
-          </td>
-        </tr>
-        <tr class="bg-white border-b">
-          <td class="py-4 px-6">Naranja</td>
-          <td class="py-4 px-6">55 Kcal</td>
-          <td class="py-4 px-6">3 gr</td>
-          <td class="py-4 px-6">1 pieza</td>
-          <td class="py-4 px-6">
-            <button class="text-blue-600 hover:text-blue-800 mr-2">
-              <!-- <i class="fas fa-edit"></i> -->
-              <img src="assets/editar.png" class="w-7" alt="">
-            </button>
-            <button class="text-red-600 hover:text-red-800">
-              <!-- <i class="fas fa-trash"></i> -->
-              <img src="assets/eliminar.png" class="w-7" alt="">
+            <button class="bg-red-600 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
+              <img src="assets/eliminar.png" class="w-7" alt="Eliminar">
             </button>
           </td>
         </tr>
@@ -63,15 +50,89 @@
     </table>
   </div>
 
-  <!-- COMIDA SECTION -->
+  <!-- SECCIÓN DE COMIDA -->
   <h2 class="text-2xl font-bold mb-2 mt-6">Comida</h2>
   <div class="bg-gray-100 p-4 rounded-lg">
-    <!-- Placeholder for dynamically loaded meal items -->
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3 px-6">Alimento</th>
+          <th scope="col" class="py-3 px-6">Aporte</th>
+          <th scope="col" class="py-3 px-6">Grasas</th>
+          <th scope="col" class="py-3 px-6">Proteinas</th>
+          <th scope="col" class="py-3 px-6">Carbohidratos</th>
+          <th scope="col" class="py-3 px-6">Cantidad</th>
+          <th scope="col" class="py-3 px-6">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let meal of comidaMeals" class="bg-white border-b">
+          <td class="py-4 px-6">{{ meal.nombre }}</td>
+          <td class="py-4 px-6">{{ meal.calorias }} Kcal</td>
+          <td class="py-4 px-6">{{ meal.grasa }} gr</td>
+          <td class="py-4 px-6">{{ meal.proteina }} gr</td>
+          <td class="py-4 px-6">{{ meal.carbohidratos }} gr</td>
+          <td class="py-4 px-6">{{ meal.porcion }} {{ meal.tipomedida }}</td>
+          <td class="py-4 px-6">
+            <button class="mr-2 bg-lime-500 p-2 rounded-lg">
+              <img src="assets/editar.png" class="w-7" alt="Editar">
+            </button>
+            <button class="bg-red-600 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
+              <img src="assets/eliminar.png" class="w-7" alt="Eliminar">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <!-- CENA SECTION -->
+  <!-- SECCIÓN DE CENA -->
   <h2 class="text-2xl font-bold mb-2 mt-6">Cena</h2>
   <div class="bg-gray-100 p-4 rounded-lg">
-    <!-- Placeholder for dynamically loaded meal items -->
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3 px-6">Alimento</th>
+          <th scope="col" class="py-3 px-6">Aporte</th>
+          <th scope="col" class="py-3 px-6">Grasas</th>
+          <th scope="col" class="py-3 px-6">Proteinas</th>
+          <th scope="col" class="py-3 px-6">Carbohidratos</th>
+          <th scope="col" class="py-3 px-6">Cantidad</th>
+          <th scope="col" class="py-3 px-6">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let meal of cenaMeals" class="bg-white border-b">
+          <td class="py-4 px-6">{{ meal.nombre }}</td>
+          <td class="py-4 px-6">{{ meal.calorias }} Kcal</td>
+          <td class="py-4 px-6">{{ meal.grasa }} gr</td>
+          <td class="py-4 px-6">{{ meal.proteina }} gr</td>
+          <td class="py-4 px-6">{{ meal.carbohidratos }} gr</td>
+          <td class="py-4 px-6">{{ meal.porcion }} {{ meal.tipomedida }}</td>
+          <td class="py-4 px-6">
+            <button class="mr-2 bg-lime-500 p-2 rounded-lg">
+              <img src="assets/editar.png" class="w-7" alt="Editar">
+            </button>
+            <button class="bg-red-600 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
+              <img src="assets/eliminar.png" class="w-7" alt="Eliminar">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
 </div>
+
+<!-- MODAL DE SELECCIÓN DE ALIMENTOS -->
+<app-food-modal
+  *ngIf="isModalOpen"
+  (foodSelected)="onFoodSelected($event)">
+</app-food-modal>
+
+<!-- MODAL DE DETALLES DE ALIMENTOS -->
+<app-fooddetail-modal
+  *ngIf="isDetailsModalOpen"
+  [food]="selectedFood"
+  (foodAdded)="onFoodAdded($event)">
+</app-fooddetail-modal>
