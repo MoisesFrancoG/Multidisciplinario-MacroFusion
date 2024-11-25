@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Food } from '../models/food';
 import { FoodConsumption } from '../models/food-consumption';
+import { ListaAlimentos } from '../models/lista-alimentos';
 
 @Injectable({
   providedIn: 'root'
@@ -47,8 +48,8 @@ export class FoodService {
   }
 
   // Método para hacer POST del alimento con la nueva categoría y porción
-  postFoodConsumption(food: FoodConsumption): Observable<any> {
-    return this.http.post<any>(this.FoodConsumption, food);
+  postFoodConsumption(food: ListaAlimentos): Observable<ListaAlimentos> {
+    return this.http.post<ListaAlimentos>(this.FoodConsumption, food);
   }
 
   // Método para obtener los alimentos por idcomida
@@ -56,8 +57,8 @@ export class FoodService {
     return this.http.get<FoodConsumption[]>(`${this.getFoodListConsumption}/${idcomida}`);
   }
 
-  updateFoodConsumption(id: number, updatedData: Partial<FoodConsumption>): Observable<FoodConsumption> {
-    return this.http.put<FoodConsumption>(`http://127.0.0.1:8000/api/lista/${id}`, updatedData);
+  updateFoodConsumption(id: number, updatedData: Observable<ListaAlimentos>): Observable<ListaAlimentos> {
+    return this.http.put<ListaAlimentos>(`http://127.0.0.1:8000/api/lista/${id}`, updatedData);
   }
 
   deleteFoodConsumption(id: number): Observable<void> {
