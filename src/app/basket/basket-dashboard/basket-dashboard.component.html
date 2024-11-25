@@ -27,7 +27,7 @@
           <p class="text-xl"><strong>Grasas:</strong> {{ food.grasa }}gr</p>
           <p class="text-xl"><strong>Tipo de medida:</strong> {{ food.tipomedida }}</p>
           <div class="flex justify-center gap-16 pt-2 mt-2">
-            <button *ngIf="food.idalimentos" (click)="navigateToEditFood(food.idalimentos)" class="bg-lime-500 p-2 rounded-lg hover:text-green-800">
+            <button *ngIf="food.idalimentos" (click)="navigateToEditFood(food.idalimentos)" class="bg-lime-500 p-2 rounded-lg">
               <img src="assets/editar.png" class="w-11" alt="Edit">
             </button>
             <button (click)="food.idalimentos ? deleteFood(food.idalimentos) : null" class="bg-red-600 p-2 rounded-lg">
