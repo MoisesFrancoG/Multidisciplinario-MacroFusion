@@ -133,6 +133,5 @@
 <!-- MODAL DE DETALLES DE ALIMENTOS -->
 <app-fooddetail-modal
   *ngIf="isDetailsModalOpen"
-  [food]="selectedFood"
   (foodAdded)="onFoodAdded($event)">
 </app-fooddetail-modal>

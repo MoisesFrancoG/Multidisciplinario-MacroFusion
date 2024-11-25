@@ -47,7 +47,7 @@ export class MealsDashboardComponent implements OnInit{
   }
 
   /**
-   * Fetch meals by `idConsumo` and categorize them.
+   * Fetch meals by idConsumo and categorize them.
    * @param idConsumo - The consumption ID to fetch meals for.
    */
   private fetchMeals(idConsumo: number): void {
@@ -148,9 +148,4 @@ export class MealsDashboardComponent implements OnInit{
       });
     }
   }
-
-
-
-
-
 }

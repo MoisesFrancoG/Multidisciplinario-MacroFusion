@@ -9,7 +9,7 @@ import { FoodConsumption } from '../../models/food-consumption';
   styleUrl: './fooddetail-modal.component.css'
 })
 export class FooddetailModalComponent {
-  @Input() food!: Food; // Recibimos el alimento seleccionado
+  @Input() food!: FoodConsumption; // Recibimos el alimento seleccionado
   @Input() isEditMode: boolean = false; // Por defecto, es falso.
   @Output() foodAdded = new EventEmitter<FoodConsumption | null>();
 
@@ -26,7 +26,7 @@ export class FooddetailModalComponent {
     return {
       idlistaalimentos: 0, // Declarado
       idcomida: parseInt(localStorage.getItem('idconsumo') || '0', 10), // Obtenemos de LocalStorage
-      idalimento: this.food.idalimentos || 0,
+      idalimento: this.food.idalimento || 0,
       nombre: this.food.nombre,
       marca: this.food.marca || '',
       calorias: Math.round(this.food.calorias * factor),
