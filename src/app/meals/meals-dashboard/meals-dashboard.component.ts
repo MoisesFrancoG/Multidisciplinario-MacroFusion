@@ -3,6 +3,7 @@ import { Food } from '../../models/food';
 import { FoodConsumption } from '../../models/food-consumption';
 import { FoodService } from '../../services/food.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ListaAlimentos } from '../../models/lista-alimentos';
 
 @Component({
   selector: 'app-meals-dashboard',
@@ -19,6 +20,7 @@ export class MealsDashboardComponent implements OnInit{
   cenaMeals: FoodConsumption[] = [];
   userId = parseInt(localStorage.getItem('user_id') || '0', 10);
   idConsumo: number | null = null;
+  listaAlimentos: ListaAlimentos | null = null
 
   constructor(private foodService: FoodService) {}
 
@@ -133,7 +135,7 @@ export class MealsDashboardComponent implements OnInit{
     }
   }
 
-  onFoodAdded(consumption: FoodConsumption | null): void {
+  onFoodAdded(consumption: ListaAlimentos | null): void {
     this.isDetailsModalOpen = false;
     if (consumption) {
       this.foodService.postFoodConsumption(consumption).subscribe({

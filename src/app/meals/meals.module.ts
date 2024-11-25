@@ -6,13 +6,15 @@ import { MealsDashboardComponent } from './meals-dashboard/meals-dashboard.compo
 import { FoodModalComponent } from './food-modal/food-modal.component';
 import { FooddetailModalComponent } from './fooddetail-modal/fooddetail-modal.component';
 import { FormsModule } from '@angular/forms';
+import { EditMealModalComponent } from './edit-meal-modal/edit-meal-modal.component';
 
 
 @NgModule({
   declarations: [
     MealsDashboardComponent,
     FoodModalComponent,
-    FooddetailModalComponent
+    FooddetailModalComponent,
+    EditMealModalComponent,
   ],
   imports: [
     CommonModule,
