@@ -26,13 +26,10 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   register(): void {
-    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}(\.com)$/;
+    // Limpia espacios antes de validar
+    this.trimEmail();
 
-    if (!emailRegex.test(this.user.email)) {
-      alert('Por favor, ingresa un correo válido que termine en ".com".');
-      return;
-    }
-
+    // Verifica si el formulario es válido
     if (!this.user.nombre || !this.user.userpassword ||
         this.user.edad <= 0 || this.user.peso <= 0 || this.user.estatura <= 0) {
       alert('Por favor, llena todos los campos correctamente.');
@@ -41,6 +38,7 @@ export class RegisterComponent {
 
     console.log('Datos de registro:', this.user);
 
+    // Realiza el registro
     this.authService.register(this.user).subscribe(
       response => {
         alert('Registro exitoso. Ahora puedes iniciar sesión.');
@@ -53,6 +51,10 @@ export class RegisterComponent {
     );
   }
 
+  trimEmail(): void {
+    // Elimina espacios en blanco del email
+    this.user.email = this.user.email.trim();
+  }
 
 }
 
