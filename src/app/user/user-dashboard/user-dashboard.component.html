@@ -14,10 +14,18 @@
   </div>
 </div>
 
-<div class="pb-20 pt-20 ">
+<!-- Pantalla de carga -->
+<div *ngIf="isLoading" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="text-center">
+    <img src="/assets/logoMF.jpg" alt="Nutriologo" class="w-32 h-32 rounded-full mb-4 animate-ping">
+    <p class="text-white text-xl font-bold  animate-ping ">Cargando...</p>
+  </div>
+</div>
+
+<div *ngIf="!isLoading" class="pb-20 pt-20 ">
   <div class="grid grid-cols-3 gap-4 p-6 ">
 
-    <div class="flex flex-col justify-between text-center shadow rounded cursor-pointer border transition-transform duration-500 ease-in-out transform hover:scale-105" routerLink="/canasta">
+    <div class="flex flex-col justify-between text-center shadow rounded cursor-pointer border transition-transform duration-500 ease-in-out transform hover:scale-105" (click)="navigateWithLoader('/canasta')">
       <div class=" bg-cover h-3/4 bg-center" style="background-image: url('/assets/canasta.jpg'); " >
       </div>
       <div class="bg-cover h-1/4 " style="background-color: rgb(212, 212, 212);">
@@ -26,7 +34,7 @@
       <!-- <img src="/assets/canasta.jpg" alt="Canasta de alimentos" class=" h-3/4 rounded"> -->
     </div>
 
-    <div class="flex flex-col justify-between text-center shadow rounded cursor-pointer border transition-transform duration-500 ease-in-out transform hover:scale-105" routerLink="/comidas">
+    <div class="flex flex-col justify-between text-center shadow rounded cursor-pointer border transition-transform duration-500 ease-in-out transform hover:scale-105" (click)="navigateWithLoader('/comidas')">
       <!-- <img src="/assets/comida.jpg" alt="Comidas" class="h-3/4 rounded"> -->
       <div class=" bg-cover h-3/4 bg-center" style="background-image: url('/assets/comida.jpg'); " ></div>
       <div class="bg-cover h-1/4 " style="background-color: rgb(212, 212, 212);">
@@ -34,7 +42,7 @@
       </div>
     </div>
 
-    <div class="flex flex-col justify-between text-center shadow rounded cursor-pointer border transition-transform duration-500 ease-in-out transform hover:scale-105" routerLink="/ejercicios">
+    <div class="flex flex-col justify-between text-center shadow rounded cursor-pointer border transition-transform duration-500 ease-in-out transform hover:scale-105" (click)="navigateWithLoader('/ejercicios')">
       <!-- <div class=" bg-cover h-3/4 bg-center" style="background-image: url('/assets/ejercicios.jpg'); "> -->
               <img src="/assets/ejercicios.jpg" alt="Comidas" class="h-3/4 rounded">
       <!-- </div> -->

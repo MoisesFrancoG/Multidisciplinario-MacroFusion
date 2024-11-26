@@ -8,12 +8,29 @@ import { Router } from '@angular/router';
 })
 export class ExercisesSectionComponent {
 
+  isLoading: boolean = false; // Controla la visibilidad del loader
   showDropdown = false;
 
   constructor(private router: Router) {}
 
   navigateToDetail(zone: string){
     this.router.navigate(['/exercise-detail', {zone: zone}])
+  }
+
+  navigateToDetailWithLoader(zone: string): void {
+    this.isLoading = true; // Muestra la pantalla de carga
+    setTimeout(() => {
+      this.isLoading = false; // Oculta la pantalla de carga después de 1.5 segundos
+      this.router.navigate(['/exercise-detail', { zone }]);
+    }, 1000);
+  }
+
+  navigateToRoutinesWithLoader(): void {
+    this.isLoading = true; // Muestra la pantalla de carga
+    setTimeout(() => {
+      this.isLoading = false; // Oculta la pantalla de carga después de 1.5 segundos
+      this.router.navigate(['/routines']);
+    }, 1000);
   }
 
   navigateToRoutines(){

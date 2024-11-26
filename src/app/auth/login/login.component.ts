@@ -25,21 +25,36 @@ export class LoginComponent {
   login(): void {
     this.isLoading = true; // Activa el spinner
 
-    console.log(this.credentials),
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
-
         console.log('Login response:', response);
-        // this.router.navigate(['/dashboard']); // Navega al dashboard una vez autenticado
+
+        // SweetAlert de éxito
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Inicio de sesión exitoso',
+          showConfirmButton: false,
+          timer: 900,
+        });
+
+        // Mantener el spinner durante 3 segundos antes de navegar
         setTimeout(() => {
-          this.isLoading = false; // Ocultar el spinner
-          this.router.navigate(['/dashboard']); // Navegar después del temporizador
-        }, 1500);
+          this.isLoading = false; // Oculta el spinner
+          this.router.navigate(['/dashboard']); // Navega al dashboard
+        }, 3000);
       },
       error: (error) => {
         this.isLoading = false; // Oculta el spinner
+
+        // SweetAlert de error
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al iniciar sesión',
+          text: 'Por favor, revisa tus credenciales.',
+        });
+
         console.error('Login error:', error);
-        alert('Error al iniciar sesión');
       }
     });
   }

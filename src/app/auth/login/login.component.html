@@ -9,12 +9,12 @@
 
   <div class="flex flex-col items-center justify-center h-full pt-24 pb-24">
 
-    <!-- Spinner visible mientras isLoading sea true -->
-    <div *ngIf="isLoading" class="flex items-center justify-center">
-      <div class="animate-spin rounded-full h-28 w-28 border-t-8 border-b-8 border-white"></div>
-    </div>
+  <!-- Spinner sobrepuesto -->
+  <div *ngIf="isLoading" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="loader">Loading...</div>
+  </div>
 
-    <div *ngIf="!isLoading" class="bg-white p-6 rounded-lg shadow-lg w-5/12">
+    <div  class="bg-white p-6 rounded-lg shadow-lg w-5/12">
       <form (ngSubmit)="login()" class="space-y-9">
         <div>
           <label for="email" class="block text-3xl pb-3 font-semibold text-gray-700">Correo electrónico:</label>

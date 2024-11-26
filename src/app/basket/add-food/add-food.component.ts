@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 // import { NgForm } from '@angular/forms';
 import { FoodService } from '../../services/food.service';
 import { Food } from '../../models/food';
-
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -13,6 +13,7 @@ import { Food } from '../../models/food';
 })
 export class AddFoodComponent {
 
+  isLoading = false; // Controla si se muestra el spinner
   showDropdown = false;
   editMode: boolean = false; // Decide si el formulario es para editar o agregar
   foodId: number = 0;
@@ -49,28 +50,99 @@ export class AddFoodComponent {
 
   addOrUpdateFood() {
     if (this.editMode) {
+      // Modo de edición
+      this.isLoading = true; // Activa el spinner
+
       this.foodService.updateFood(this.foodId, this.food).subscribe({
         next: () => {
-          alert('Alimento actualizado con éxito');
-          this.router.navigate(['/canasta']);
+          // SweetAlert de éxito
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Alimento actualizado con éxito',
+            showConfirmButton: false,
+            timer: 600,
+          });
+
+          // Mantener el spinner durante 1 segundo antes de navegar
+          setTimeout(() => {
+            this.isLoading = false; // Oculta el spinner
+            this.router.navigate(['/canasta']); // Navega al dashboard de canasta
+          }, 1200);
         },
-        error: error => {
+        error: (error) => {
+          this.isLoading = false; // Oculta el spinner
+
+          // SweetAlert de error
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar el alimento',
+            text: 'Por favor, intenta nuevamente.',
+          });
+
           console.error('Error actualizando el alimento:', error);
-          alert('Error al actualizar alimento');
         }
       });
     } else {
+      // Modo de agregar
+      this.isLoading = true; // Activa el spinner
+
       this.foodService.addFood(this.food).subscribe({
         next: () => {
-          alert('Alimento agregado con éxito');
-          this.router.navigate(['/canasta']);
+          // SweetAlert de éxito
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Alimento agregado con éxito',
+            showConfirmButton: false,
+            timer: 600,
+          });
+
+          // Mantener el spinner durante 1 segundo antes de navegar
+          setTimeout(() => {
+            this.isLoading = false; // Oculta el spinner
+            this.router.navigate(['/canasta']); // Navega al dashboard de canasta
+          }, 1200);
         },
-        error: error => {
+        error: (error) => {
+          this.isLoading = false; // Oculta el spinner
+
+          // SweetAlert de error
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al agregar el alimento',
+            text: 'Por favor, intenta nuevamente.',
+          });
+
           console.error('Error agregando el alimento:', error);
-          alert('Error al agregar alimento');
         }
       });
     }
+  }
+
+  cancelAction() {
+    Swal.fire({
+      title: '¿Estás seguro de cancelar?',
+      text: 'Los cambios no se guardarán.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, cancelar',
+      cancelButtonText: 'No, continuar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Navega al dashboard de canasta
+        this.router.navigate(['/canasta']);
+      } else {
+        // SweetAlert de acción no cancelada
+        Swal.fire({
+          icon: 'info',
+          title: 'Acción no cancelada',
+          text: 'Puedes continuar con tu registro.',
+        });
+      }
+    });
   }
 
   toggleDropdown() {

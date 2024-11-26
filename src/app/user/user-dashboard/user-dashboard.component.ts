@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrl: './user-dashboard.component.css'
 })
 export class UserDashboardComponent {
-
+  isLoading: boolean = false; // Controla la visibilidad del loader
   showDropdown = false;
 
   constructor(private router: Router) {}
@@ -24,6 +24,15 @@ export class UserDashboardComponent {
   logout() {
     localStorage.clear(); // Limpiar todos los datos de sesión
     this.router.navigate(['/']); // Redireccionar a la vista principal
+  }
+
+  navigateWithLoader(route: string): void {
+    this.isLoading = true; // Muestra el loader
+
+    setTimeout(() => {
+      this.isLoading = false; // Oculta el loader después de 3 segundos
+      this.router.navigate([route]); // Navega a la ruta
+    }, 800); // 3000ms = 3 segundos
   }
 
 }
