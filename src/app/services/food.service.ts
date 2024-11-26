@@ -57,12 +57,15 @@ export class FoodService {
     return this.http.get<FoodConsumption[]>(`${this.getFoodListConsumption}/${idcomida}`);
   }
 
-  updateFoodConsumption(id: number, updatedData: Observable<ListaAlimentos>): Observable<ListaAlimentos> {
-    return this.http.put<ListaAlimentos>(`http://127.0.0.1:8000/api/lista/${id}`, updatedData);
-  }
-
   deleteFoodConsumption(id: number): Observable<void> {
     return this.http.delete<void>(`http://127.0.0.1:8000/api/list/${id}`);
   }
+
+     updateFoodConsumption(id: number, updatedData: ListaAlimentos): Observable<ListaAlimentos> {
+      console.log('Enviando datos para actualizar:', updatedData);
+      return this.http.put<ListaAlimentos>(`http://127.0.0.1:8000/api/lista/${id}`, updatedData);
+    }
+
+
 
 }

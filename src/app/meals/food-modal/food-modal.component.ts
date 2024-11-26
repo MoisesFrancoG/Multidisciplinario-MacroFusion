@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Food } from '../../models/food';
 import { FoodService } from '../../services/food.service';
+import { ListaAlimentos } from '../../models/lista-alimentos';
 
 @Component({
   selector: 'app-food-modal',
@@ -10,6 +11,8 @@ import { FoodService } from '../../services/food.service';
 export class FoodModalComponent implements OnInit{
 
   @Output() foodSelected = new EventEmitter<Food | null>(); // Emitir el alimento seleccionado.
+  @Output() addFood = new EventEmitter<ListaAlimentos>();
+
   foods: Food[] = [];
   userId: number = 0; // ID del usuario logueado
 
@@ -28,6 +31,17 @@ export class FoodModalComponent implements OnInit{
     } else {
       console.error('No se encontró el ID del usuario en localStorage.');
     }
+  }
+
+  addFoodToList(): void {
+    const newFood: ListaAlimentos = {
+      idlistaalimentos: 0,
+      idcomida: 1, // Ejemplo
+      idalimento: 1, // Ejemplo
+      porcion: 100, // Ejemplo
+      categoriacomida: 'Desayuno' // Ejemplo
+    };
+    this.addFood.emit(newFood); // Emitimos un objeto del tipo ListaAlimentos
   }
 
   // Cargar los alimentos basados en el ID del usuario

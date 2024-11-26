@@ -1,4 +1,3 @@
-<!-- HEADER SECTION -->
 <div class="p-6 bg-white shadow-md flex justify-between items-center">
   <div class="flex items-center space-x-4">
     <img routerLink="/dashboard" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
@@ -7,14 +6,12 @@
   <img routerLink="/user" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
 </div>
 
-<!-- MEALS CONTENT -->
 <div class="mt-6 px-6">
 
-  <!-- SECCIÓN DE DESAYUNO -->
   <h2 class="text-2xl font-bold mb-2">Desayuno</h2>
   <div class="flex justify-between items-center mb-2">
     <span class="text-xl font-bold">Resumen</span>
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="openModal()">Agregar alimento</button>
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="openAddModal()">Agregar alimento</button>
   </div>
   <div class="bg-gray-100 p-4 rounded-lg">
     <table class="w-full text-sm text-left text-gray-500">
@@ -38,7 +35,7 @@
           <td class="py-4 px-6">{{ meal.carbohidratos }} gr</td>
           <td class="py-4 px-6">{{ meal.porcion }} {{ meal.tipomedida }}</td>
           <td class="py-4 px-6">
-            <button class="mr-2 bg-lime-500 p-2 rounded-lg">
+            <button class="mr-2 bg-lime-500 p-2 rounded-lg" (click)="openEditModal(meal)">
               <img src="assets/editar.png" class="w-7" alt="Editar">
             </button>
             <button class="bg-red-600 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
@@ -50,7 +47,6 @@
     </table>
   </div>
 
-  <!-- SECCIÓN DE COMIDA -->
   <h2 class="text-2xl font-bold mb-2 mt-6">Comida</h2>
   <div class="bg-gray-100 p-4 rounded-lg">
     <table class="w-full text-sm text-left text-gray-500">
@@ -75,7 +71,7 @@
           <td class="py-4 px-6">{{ meal.porcion }} {{ meal.tipomedida }}</td>
           <td class="py-4 px-6">
             <button class="mr-2 bg-lime-500 p-2 rounded-lg">
-              <img src="assets/editar.png" class="w-7" alt="Editar" >
+              <img src="assets/editar.png" class="w-7" alt="Editar" (click)="openEditModal(meal)" >
             </button>
             <button class="bg-red-600 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
               <img src="assets/eliminar.png" class="w-7" alt="Eliminar">
@@ -86,7 +82,6 @@
     </table>
   </div>
 
-  <!-- SECCIÓN DE CENA -->
   <h2 class="text-2xl font-bold mb-2 mt-6">Cena</h2>
   <div class="bg-gray-100 p-4 rounded-lg">
     <table class="w-full text-sm text-left text-gray-500">
@@ -111,7 +106,7 @@
           <td class="py-4 px-6">{{ meal.porcion }} {{ meal.tipomedida }}</td>
           <td class="py-4 px-6">
             <button class="mr-2 bg-lime-500 p-2 rounded-lg">
-              <img src="assets/editar.png" class="w-7" alt="Editar" >
+              <img src="assets/editar.png" class="w-7" alt="Editar" (click)="openEditModal(meal)">
             </button>
             <button class="bg-red-600 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
               <img src="assets/eliminar.png" class="w-7" alt="Eliminar">
@@ -124,16 +119,17 @@
 
 </div>
 
-<!-- MODAL DE SELECCIÓN DE ALIMENTOS -->
 <app-food-modal
   *ngIf="isModalOpen"
   (foodSelected)="onFoodSelected($event)">
 </app-food-modal>
 
-<!-- MODAL DE DETALLES DE ALIMENTOS -->
 <app-fooddetail-modal
   *ngIf="isDetailsModalOpen"
-  [food]="selectedFood"
-  (foodAdded)="onFoodAdded($event)">
+  [food]="selectedFoodFromList"
+  [foodSelected]="selectedFood"
+  [isEditMode]="isEditMode"
+  (foodAdded)="onFoodAdded($event)"
+  (closeModal)="closeModal()">
 </app-fooddetail-modal>
 
