@@ -26,11 +26,18 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   register(): void {
-    // Convertir los valores numéricos para asegurar el tipo correcto
-    this.user.edad = Number(this.user.edad);
-    this.user.peso = Number(this.user.peso);
-    this.user.estatura = Number(this.user.estatura);
-    this.user.indiceactividad = Number(this.user.indiceactividad);
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}(\.com)$/;
+
+    if (!emailRegex.test(this.user.email)) {
+      alert('Por favor, ingresa un correo válido que termine en ".com".');
+      return;
+    }
+
+    if (!this.user.nombre || !this.user.userpassword ||
+        this.user.edad <= 0 || this.user.peso <= 0 || this.user.estatura <= 0) {
+      alert('Por favor, llena todos los campos correctamente.');
+      return;
+    }
 
     console.log('Datos de registro:', this.user);
 
@@ -45,5 +52,7 @@ export class RegisterComponent {
       }
     );
   }
+
+
 }
 
