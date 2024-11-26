@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
-import { LoginUser } from '../../models/login-user';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
-  // standalone: false
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
   credentials = {
     email: '',
     password: ''
@@ -19,17 +16,20 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  login(): void {
-    console.log(this.credentials),
-    this.authService.login(this.credentials).subscribe({
-      next: (response) => {
-        console.log('Login response:', response);
-        this.router.navigate(['/dashboard']); // Navega al dashboard una vez autenticado
-      },
-      error: (error) => {
-        console.error('Login error:', error);
-        alert('Error al iniciar sesión');
-      }
-    });
+  onLogin(form: any): void {
+    if (form.valid) {
+      this.authService.login(this.credentials).subscribe({
+        next: (response) => {
+          console.log('Login response:', response);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          console.error('Login error:', error);
+          Swal.fire('Error', 'Credenciales inválidas. Por favor, verifica tus datos.', 'error');
+        }
+      });
+    } else {
+      Swal.fire('Error', 'Por favor, completa todos los campos correctamente.', 'error');
+    }
   }
 }

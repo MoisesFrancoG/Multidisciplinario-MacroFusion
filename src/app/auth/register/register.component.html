@@ -12,49 +12,113 @@
   <div class="w-1/2 bg-cover border" style="background-image: url('/assets/register2.webp');"></div>
   <div class="w-1/2 flex flex-col justify-center items-center pb-8 ">
     <h1 class="text-4xl font-bold mb-4 pt-6">¡HOLA, REGISTRATE AHORA!</h1>
-    <form class="w-4/5 max-w-2xl" (ngSubmit)="register()" >
+    <form class="w-4/5 max-w-2xl" (ngSubmit)="register()" #registerForm="ngForm">
       <div class="mb-4">
+        <!-- NOMBRE -->
         <label for="name" class="block text-lg mb-2">NOMBRE:</label>
-        <input [(ngModel)]="user.nombre" id="name" type="text" placeholder="Ej. Angel" name="name" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+        <input
+          [(ngModel)]="user.nombre"
+          #name="ngModel"
+          id="name"
+          type="text"
+          name="name"
+          required
+          class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <div *ngIf="name.invalid && name.touched" class="text-red-500">El nombre es obligatorio.</div>
       </div>
+      <!-- CORREO -->
       <div class="mb-4">
         <label for="email" class="block text-lg mb-2">CORREO ELECTRÓNICO:</label>
-        <input [(ngModel)]="user.email" id="email" type="email"  name="email" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+        <input
+          [(ngModel)]="user.email"
+          #email="ngModel"
+          id="email"
+          type="email"
+          name="email"
+          required
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          class="w-full px-3 py-2 border rounded focus:outline-none"
+          [ngClass]="{
+            'border-gray-300 focus:ring-green-500': email.valid || !email.touched,
+            'border-red-500 focus:ring-red-500': email.invalid && email.touched
+          }"
+        />
+        <div *ngIf="email.invalid && email.touched" class="text-red-500">
+          Ingresa un correo válido.
+        </div>
       </div>
+      <!-- CONTRASEÑA -->
       <div class="mb-4">
         <label for="password" class="block text-lg mb-2">CONTRASEÑA:</label>
-        <input [(ngModel)]="user.userpassword" id="password" type="password"  name="password" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+        <input
+          [(ngModel)]="user.userpassword"
+          id="password"
+          type="password"
+          name="password"
+          class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          required
+          #password="ngModel" />
+        <div *ngIf="password.invalid && password.touched" class="text-red-500 text-sm">
+          La contraseña es obligatoria.
+        </div>
       </div>
+      <!-- ESTATURA -->
       <div class="mb-4">
         <label for="height" class="block text-lg mb-2">ESTATURA (cm):</label>
-        <input [(ngModel)]="user.estatura" id="height" type="number"  name="height" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+        <input
+          [(ngModel)]="user.estatura"
+          #height="ngModel"
+          id="height"
+          type="number"
+          name="height"
+          required
+          min="1"
+          step="1"
+          class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <div *ngIf="height.invalid && height.touched" class="text-red-500">
+          Ingresa una estatura válida mayor a 0 y en números enteros.
+        </div>
       </div>
+      <!-- PESO -->
       <div class="mb-4">
         <label for="weight" class="block text-lg mb-2">PESO (kg):</label>
-        <input [(ngModel)]="user.peso" id="weight" type="number"  name="weight" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+        <input
+          [(ngModel)]="user.peso"
+          #weight="ngModel"
+          id="weight"
+          type="number"
+          name="weight"
+          required
+          min="1"
+          step="1"
+          class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <div *ngIf="weight.invalid && weight.touched" class="text-red-500">
+          Ingresa un peso válido mayor a 0 y en números enteros.
+        </div>
       </div>
+      <!-- EDAD -->
       <div class="mb-4">
         <label for="age" class="block text-lg mb-2">EDAD:</label>
-        <input [(ngModel)]="user.edad" id="age" type="number"  name="age" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" required />
+        <input
+          [(ngModel)]="user.edad"
+          #age="ngModel"
+          id="age"
+          type="number"
+          name="age"
+          required
+          min="9"
+          max="90"
+          step="1"
+          class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <div *ngIf="age.invalid && age.touched" class="text-red-500">
+          Ingresa una edad válida entre 8 y 90 años.
+        </div>
       </div>
-      <div class="mb-4">
-        <label for="sex" class="block text-lg mb-2">SEXO:</label>
-        <select [(ngModel)]="user.sexo" id="sex" name="gender" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
-          <option value="Hombre">Hombre</option>
-          <option value="Mujer">Mujer</option>
-        </select>
-      </div>
-      <div class="mb-4">
-        <label for="activity" class="block text-lg mb-2">ÍNDICE DE ACTIVIDAD:</label>
-        <select [(ngModel)]="user.indiceactividad" id="activity" name="activityIndex" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
-          <option [value]="1.2">Sedentario (0 actividad física)</option>
-          <option [value]="1.375">Relajado (1-3 veces por semana)</option>
-          <option [value]="1.55">Activo (3-5 veces por semana)</option>
-          <option [value]="1.725">Extremadamente activo (6-7 veces por semana)</option>
-        </select>
-      </div>
-      <button type="submit" class="w-full bg-green-700 hover:bg-green-600 text-white py-2 rounded mt-4">REGISTRARSE</button>
+
+      <button type="submit" [disabled]="registerForm.invalid"
+        class="w-full bg-green-700 hover:bg-green-600 text-white py-2 rounded mt-4">
+        REGISTRARSE
+      </button>
     </form>
-    <p class="mt-4">¿YA TIENES UNA CUENTA? <a routerLink="/login" class="text-blue-500">INICIAR SESIÓN</a></p>
-  </div>
+
 </div>
