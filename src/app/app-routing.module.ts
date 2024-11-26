@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'ejercicios', component: ExercisesSectionComponent},
   { path: 'exercise-detail', component: ExerciseDetailComponent},
   { path: 'routines', component: RoutinesSectionComponent },
-  { path: 'routine-detail/:routine', component: RoutinesDetailComponent },
+  { path: 'routine-detail/:id', component: RoutinesDetailComponent },
   // RUTAS COMIDAS
   { path: 'comidas', component: MealsDashboardComponent },
 
