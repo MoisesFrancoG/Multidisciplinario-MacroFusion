@@ -15,7 +15,7 @@
 </div>
 
 
-<div class="container mx-auto p-4">
+<!-- <div class="container mx-auto p-4">
   <h2 class="text-center text-lime-600 text-2xl font-bold mb-4">{{ zone }}</h2>
 
   <div class="flex mb-4">
@@ -35,5 +35,42 @@
 
   <ng-template #noData>
     <p class="text-center text-gray-500">No hay ejercicios disponibles para esta selección.</p>
+  </ng-template>
+</div> -->
+
+<div class="container mx-auto my-10 p-6 bg-white rounded-lg shadow-md">
+  <!-- Título -->
+  <h2 class="text-center text-lime-600 text-3xl font-bold mb-6">{{ zone }}</h2>
+
+  <!-- Selector de Nivel -->
+  <div class="flex items-center  mb-6 space-x-4">
+    <label for="zoneSelect" class="block text-lg font-semibold text-gray-700">Selecciona tu nivel:</label>
+    <select
+      id="zoneSelect"
+      class="w-1/3 px-4 py-2 border border-gray-300 rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-lime-500"
+      (change)="onLevelChange($event)"
+    >
+      <option *ngFor="let nivel of niveles" [value]="nivel">{{ nivel }}</option>
+    </select>
+  </div>
+
+  <!-- Lista de Ejercicios -->
+  <div *ngIf="ejercicios.length > 0; else noData" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div *ngFor="let ejercicio of ejercicios" class="bg-gray-100 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+      <!-- Imagen del ejercicio -->
+      <div class="aspect-w-4 aspect-h-3">
+        <img [src]="ejercicio.imagen" alt="{{ ejercicio.nombre }}" class="w-full h-full object-cover">
+      </div>
+      <!-- Detalles del ejercicio -->
+      <div class="p-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ ejercicio.nombre }}</h3>
+        <p class="text-gray-600 text-sm">{{ ejercicio.descripcion }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje de No Ejercicios -->
+  <ng-template #noData>
+    <p class="text-center text-gray-500 text-lg mt-6">No hay ejercicios disponibles para esta selección.</p>
   </ng-template>
 </div>

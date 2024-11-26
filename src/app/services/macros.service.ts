@@ -8,7 +8,7 @@ import { Macro } from '../models/Macro';
 })
 export class MacrosService {
 
-  private macroUrl: string = "http://127.0.0.1:8000/api/macros"
+  private macroUrl: string = "http://35.174.29.231:8000/api/macros"
   constructor(private http: HttpClient) { }
 
   getMacro(id: number): Observable<Macro> {

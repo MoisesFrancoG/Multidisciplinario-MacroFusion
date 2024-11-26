@@ -7,7 +7,7 @@ import { Usuario } from '../models/usuario';
 })
 export class UserService {
 
-  private urlUser : string = "http://127.0.0.1:8000/api/user" 
+  private urlUser : string = "http://35.174.29.231:8000/api/user"
   constructor(private http: HttpClient) { }
 
   getUserId(id: number): Observable<Usuario> {
@@ -15,5 +15,5 @@ export class UserService {
   }
   updateUser(id: number, user : Usuario): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.urlUser}/${id}`,user)
-  } 
+  }
 }

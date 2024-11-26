@@ -7,10 +7,10 @@ import { Ejercicio } from '../models/Ejercicio';
   providedIn: 'root'
 })
 export class RutineService {
-  private rutineUrl: string = "http://127.0.0.1:8000/api/ejerciciosbyRutine"
+  private rutineUrl: string = "http://35.174.29.231:8000/api/ejerciciosbyRutine"
   constructor(private http: HttpClient) { }
 
-  getExercicesbyRutine(id: number): Observable<Ejercicio[]>{ 
+  getExercicesbyRutine(id: number): Observable<Ejercicio[]>{
     return this.http.get<Ejercicio[]>(`${this.rutineUrl}/${id}`)
   }
 }
