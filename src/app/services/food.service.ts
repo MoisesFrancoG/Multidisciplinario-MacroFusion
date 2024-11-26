@@ -10,11 +10,11 @@ import { ListaAlimentos } from '../models/lista-alimentos';
 })
 export class FoodService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/alimentos';
-  private foodurl = 'http://127.0.0.1:8000/api/usuario';
-  private consumoUrl = 'http://127.0.0.1:8000/api/consumo/dia';
-  private FoodConsumption = 'http://127.0.0.1:8000/api/lista';
-  private getFoodListConsumption = 'http://127.0.0.1:8000/api/listaalimentos';
+  private apiUrl = 'http://35.174.29.231:8000/api/alimentos';
+  private foodurl = 'http://35.174.29.231:8000/api/usuario';
+  private consumoUrl = 'http://35.174.29.231:8000/api/consumo/dia';
+  private FoodConsumption = 'http://35.174.29.231:8000/api/lista';
+  private getFoodListConsumption = 'http://35.174.29.231:8000/api/listaalimentos';
 
   constructor(private http: HttpClient) { }
 
@@ -62,7 +62,7 @@ export class FoodService {
   }
 
   deleteFoodConsumption(id: number): Observable<void> {
-    return this.http.delete<void>(`http://127.0.0.1:8000/api/list/${id}`);
+    return this.http.delete<void>(`http://35.174.29.231:8000/api/list/${id}`);
   }
 
 }
