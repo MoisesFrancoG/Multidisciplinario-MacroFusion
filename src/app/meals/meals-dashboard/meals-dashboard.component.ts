@@ -135,21 +135,63 @@ export class MealsDashboardComponent implements OnInit{
   }
 
   deleteMeal(id: number | undefined): void {
-    if (id && confirm('¿Estás seguro de que deseas eliminar este alimento?')) {
-      this.foodService.deleteFoodConsumption(id).subscribe({
-        next: () => {
-          alert('Alimento eliminado exitosamente.');
-          this.meals = this.meals.filter(meal => meal.idlistaalimentos !== id); // Actualizar la lista localmente.
-          this.filterMealsByCategory(); // Recalcular las categorías.
-          this.initializeData()
-        },
-        error: (err) => {
-          console.error('Error al eliminar el alimento:', err);
-          alert('Hubo un error al eliminar el alimento.');
-        }
-      });
+    if (!id) {
+      console.error('El ID del alimento es inválido.');
+      return;
     }
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Este alimento será eliminado permanentemente.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#22c55e', // Verde (bg-green-500)
+      cancelButtonColor: '#22c55e', // Rojo (bg-red-500)
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Llamada al servicio para eliminar
+        this.foodService.deleteFoodConsumption(id).subscribe({
+          next: () => {
+            // SweetAlert de éxito
+            Swal.fire({
+              icon: 'success',
+              title: 'Eliminado',
+              text: 'El alimento ha sido eliminado exitosamente.',
+              showConfirmButton: false,
+              timer: 1200,
+            });
+
+            // Actualizar lista localmente y recalcular categorías
+            this.meals = this.meals.filter(meal => meal.idlistaalimentos !== id);
+            this.filterMealsByCategory();
+            this.initializeData();
+          },
+          error: (err) => {
+            console.error('Error al eliminar el alimento:', err);
+
+            // SweetAlert de error
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Hubo un problema al eliminar el alimento. Por favor, intenta nuevamente.',
+            });
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // SweetAlert de cancelación
+        Swal.fire({
+          icon: 'info',
+          title: 'Cancelado',
+          text: 'El alimento no fue eliminado.',
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
   }
+
 
 
   openModal(): void {
