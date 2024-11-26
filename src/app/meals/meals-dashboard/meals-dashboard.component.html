@@ -2,20 +2,28 @@
 <div class="p-6 bg-white shadow-md flex justify-between items-center">
   <div class="flex items-center space-x-4">
     <img routerLink="/dashboard" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
-    <span class="font-bold text-4xl">MacroFusion</span>
+    <span class="font-bold text-6xl pl-6">MacroFusion</span>
   </div>
-  <img routerLink="/user" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
+
+  <div class="relative">
+    <img src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer transition-transform duration-200 ease-in-out transform hover:scale-105" (click)="toggleDropdown()">
+
+    <div *ngIf="showDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+      <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" routerLink="/personal-info">Perfil</a>
+      <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" (click)="logout()">Cerrar Sesión</a>
+    </div>
+  </div>
 </div>
 
 <!-- MEALS CONTENT -->
 <div class="mt-6 px-6">
 
   <!-- SECCIÓN DE DESAYUNO -->
-  <h2 class="text-2xl font-bold mb-2">Desayuno</h2>
   <div class="flex justify-between items-center mb-2">
     <span class="text-xl font-bold">Resumen</span>
     <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="openModal()">Agregar alimento</button>
   </div>
+  <h2 class="text-2xl font-bold mb-2">Desayuno</h2>
   <div class="bg-gray-100 p-4 rounded-lg">
     <table class="w-full text-sm text-left text-gray-500">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50">

@@ -1,21 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ejercicio } from '../../models/Ejercicio';
 import { EjerciciosService } from '../../services/ejecicios.service';
 
 @Component({
   selector: 'app-exercise-detail',
   templateUrl: './exercise-detail.component.html',
-  styleUrls: ['./exercise-detail.component.css']
+  // styleUrls: ['./exercise-detail.component.css']
 })
 export class ExerciseDetailComponent implements OnInit {
-  zone: string = ''; 
-  dificultad: string = 'Principiante'; 
-  niveles: string[] = ['Principiante', 'Intermedio', 'Avanzado'];
-  ejercicios: Ejercicio[] = []; 
-  allEjercicios: Ejercicio[] = []; 
 
-  constructor(private route: ActivatedRoute, private ejerciciosService: EjerciciosService) {}
+  showDropdown = false;
+  zone: string = '';
+  dificultad: string = 'Principiante';
+  niveles: string[] = ['Principiante', 'Intermedio', 'Avanzado'];
+  ejercicios: Ejercicio[] = [];
+  allEjercicios: Ejercicio[] = [];
+
+  constructor(
+    private route: ActivatedRoute,
+    private ejerciciosService: EjerciciosService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const zone = this.route.snapshot.paramMap.get('zone');
@@ -50,4 +56,19 @@ export class ExerciseDetailComponent implements OnInit {
         ejercicio.musculotrabajado === this.zone && ejercicio.dificultad === this.dificultad
     );
   }
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
+
+  closeDropdown() {
+    event?.stopPropagation();
+    this.showDropdown = false;
+  }
+
+  logout() {
+    localStorage.clear(); // Limpiar todos los datos de sesión
+    this.router.navigate(['/']); // Redireccionar a la vista principal
+  }
+
 }

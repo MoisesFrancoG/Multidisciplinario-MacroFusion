@@ -9,6 +9,8 @@ import { FoodService } from '../../services/food.service';
   styleUrl: './basket-dashboard.component.css',
 })
 export class BasketDashboardComponent implements OnInit {
+
+  showDropdown = false;
   foods: Food[] = [];
   idsuario = parseInt(localStorage.getItem('user_id') || '0', 10);
   constructor(private foodService: FoodService, private router: Router) {}
@@ -47,4 +49,22 @@ export class BasketDashboardComponent implements OnInit {
       console.error('Attempted to edit food without an ID');
     }
   }
+
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
+
+  closeDropdown() {
+    event?.stopPropagation();
+    this.showDropdown = false;
+  }
+
+  logout() {
+    localStorage.clear(); // Limpiar todos los datos de sesión
+    this.router.navigate(['/']); // Redireccionar a la vista principal
+  }
+
+
+
 }

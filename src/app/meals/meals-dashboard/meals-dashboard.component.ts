@@ -4,6 +4,7 @@ import { FoodConsumption } from '../../models/food-consumption';
 import { FoodService } from '../../services/food.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ListaAlimentos } from '../../models/lista-alimentos';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-meals-dashboard',
@@ -11,6 +12,8 @@ import { ListaAlimentos } from '../../models/lista-alimentos';
   styleUrl: './meals-dashboard.component.css'
 })
 export class MealsDashboardComponent implements OnInit{
+
+  showDropdown = false;
   isModalOpen = false;
   isDetailsModalOpen = false;
   selectedFood!: Food;
@@ -22,7 +25,10 @@ export class MealsDashboardComponent implements OnInit{
   idConsumo: number | null = null;
   listaAlimentos: ListaAlimentos | null = null
 
-  constructor(private foodService: FoodService) {}
+  constructor(
+    private foodService: FoodService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -150,4 +156,22 @@ export class MealsDashboardComponent implements OnInit{
       });
     }
   }
+
+
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
+
+  closeDropdown() {
+    event?.stopPropagation();
+    this.showDropdown = false;
+  }
+
+  logout() {
+    localStorage.clear(); // Limpiar todos los datos de sesión
+    this.router.navigate(['/']); // Redireccionar a la vista principal
+  }
+
+
 }
