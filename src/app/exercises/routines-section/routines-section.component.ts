@@ -12,8 +12,8 @@ export class RoutinesSectionComponent {
 
   constructor(private router: Router) {}
 
-  navigateToRoutineDetail(routine: string): void{
-    this.router.navigate(['/routine-detail', routine])
+  navigateToRoutineDetail(id: number): void{
+    this.router.navigate(['/routine-detail', id])
   }
 
   toggleDropdown() {

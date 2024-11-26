@@ -15,6 +15,19 @@
 </div>
 
 
+<!-- RoutinesDetailComponent -->
 <div class="container mx-auto p-4">
-  <h2 class="text-center text-lime-600 text-2xl font-bold mb-4">{{ routine }}</h2>
+  <h2 class="text-center text-lime-600 text-2xl font-bold mb-4">{{title}}</h2>
+
+  <div *ngIf="ejercicios.length > 0">
+    <div *ngFor="let ejercicio of ejercicios" class="mb-4 p-4 border-b">
+      <h3 class="text-xl font-semibold">{{ ejercicio.nombre }}</h3>
+      <p>{{ ejercicio.descripcion }}</p>
+      <img [src]="ejercicio.imagen" alt="{{ ejercicio.nombre }}" class="w-full h-64 object-cover">
+    </div>
+  </div>
+  <div *ngIf="ejercicios.length === 0">
+    <p>No se encontraron ejercicios para esta rutina.</p>
+  </div>
 </div>
+
