@@ -17,16 +17,27 @@ export class LoginComponent {
     password: ''
   };
 
+  isLoading = false; // Controla si se muestra el spinner
+
+
   constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
+    this.isLoading = true; // Activa el spinner
+
     console.log(this.credentials),
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
+
         console.log('Login response:', response);
-        this.router.navigate(['/dashboard']); // Navega al dashboard una vez autenticado
+        // this.router.navigate(['/dashboard']); // Navega al dashboard una vez autenticado
+        setTimeout(() => {
+          this.isLoading = false; // Ocultar el spinner
+          this.router.navigate(['/dashboard']); // Navegar después del temporizador
+        }, 1500);
       },
       error: (error) => {
+        this.isLoading = false; // Oculta el spinner
         console.error('Login error:', error);
         alert('Error al iniciar sesión');
       }

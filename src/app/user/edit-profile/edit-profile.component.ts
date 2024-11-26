@@ -10,6 +10,8 @@ import { Usuario } from '../../models/usuario';
   styleUrls: ['./edit-profile.component.css'],
 })
 export class EditProfileComponent implements OnInit {
+
+  showDropdown = false;
   editForm: FormGroup;
   usuario: Usuario | null = null;
   idusuario: number;
@@ -47,13 +49,29 @@ export class EditProfileComponent implements OnInit {
     if (this.usuario) {
       const updatedUser: Usuario = {
         ...this.usuario,
-        ...this.editForm.value, 
+        ...this.editForm.value,
       };
 
       this.userService.updateUser(this.idusuario, updatedUser).subscribe(() => {
         alert('Perfil actualizado exitosamente');
-        this.router.navigate(['/personal-info']); 
+        this.router.navigate(['/personal-info']);
       });
     }
   }
+
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
+
+  closeDropdown() {
+    event?.stopPropagation();
+    this.showDropdown = false;
+  }
+
+  logout() {
+    localStorage.clear(); // Limpiar todos los datos de sesión
+    this.router.navigate(['/']); // Redireccionar a la vista principal
+  }
+  
 }
