@@ -1,61 +1,60 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
-import { LoginUser } from '../../models/login-user';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
-  // standalone: false
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
+  isLoading = false;
   credentials = {
     email: '',
     password: ''
   };
 
-  isLoading = false; // Controla si se muestra el spinner
-
-
   constructor(private authService: AuthService, private router: Router) {}
 
-  login(): void {
-    this.isLoading = true; // Activa el spinner
+  onLogin(form: any): void {
+    if (form.valid) {
+      this.isLoading = true; // Activa el loader
+      this.authService.login(this.credentials).subscribe({
+        next: (response) => {
+          console.log('Login response:', response);
 
-    this.authService.login(this.credentials).subscribe({
-      next: (response) => {
-        console.log('Login response:', response);
+          // SweetAlert de éxito
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Inicio de sesión exitoso',
+            showConfirmButton: false,
+            timer: 700,
+          });
 
-        // SweetAlert de éxito
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Inicio de sesión exitoso',
-          showConfirmButton: false,
-          timer: 900,
-        });
+          // Navegar después del temporizador
+          setTimeout(() => {
+            this.isLoading = false; // Oculta el loader
+            this.router.navigate(['/dashboard']); // Navega al dashboard
+          }, 1600); // 1.6 segundos
+        },
+        error: (error) => {
+          this.isLoading = false; // Oculta el loader
 
-        // Mantener el spinner durante 3 segundos antes de navegar
-        setTimeout(() => {
-          this.isLoading = false; // Oculta el spinner
-          this.router.navigate(['/dashboard']); // Navega al dashboard
-        }, 3000);
-      },
-      error: (error) => {
-        this.isLoading = false; // Oculta el spinner
+          // SweetAlert de error
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al iniciar sesión',
+            text: 'Credenciales inválidas. Por favor, verifica tus datos.',
+          });
 
-        // SweetAlert de error
-        Swal.fire({
-          icon: 'error',
-          title: 'Error al iniciar sesión',
-          text: 'Por favor, revisa tus credenciales.',
-        });
-
-        console.error('Login error:', error);
-      }
-    });
+          console.error('Login error:', error);
+        }
+      });
+    } else {
+      // SweetAlert de formulario inválido
+      Swal.fire('Error', 'Por favor, completa todos los campos correctamente.', 'error');
+    }
   }
 }

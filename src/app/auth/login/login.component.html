@@ -7,26 +7,67 @@
     <img routerLink="" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
   </div>
 
-  <div class="flex flex-col items-center justify-center h-full pt-24 pb-24">
-
   <!-- Spinner sobrepuesto -->
   <div *ngIf="isLoading" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="loader">Loading...</div>
   </div>
 
-    <div  class="bg-white p-6 rounded-lg shadow-lg w-5/12">
-      <form (ngSubmit)="login()" class="space-y-9">
+  <div class="flex flex-col items-center justify-center h-full pt-24 pb-24">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-5/12">
+      <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" class="space-y-9" novalidate>
+        <!-- Correo Electrónico -->
         <div>
           <label for="email" class="block text-3xl pb-3 font-semibold text-gray-700">Correo electrónico:</label>
-          <input [(ngModel)]="credentials.email" type="email" id="email" class="w-full h-14 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500 text-2xl" placeholder="tu@correo.com" name="email">
+          <input
+            [(ngModel)]="credentials.email"
+            #email="ngModel"
+            type="email"
+            id="email"
+            class="w-full h-14 px-4 py-2 border rounded focus:outline-none focus:ring-2 text-2xl"
+            placeholder="tu@correo.com"
+            name="email"
+            required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$"
+            [ngClass]="{
+              'border-gray-300 focus:ring-green-500': email.valid || !email.touched,
+              'border-red-500 focus:ring-red-500': email.invalid && email.touched
+            }">
+          <div *ngIf="email.invalid && email.touched" class="text-red-500">
+            <span *ngIf="email.errors?.['required']">El correo es obligatorio.</span>
+            <span *ngIf="email.errors?.['pattern']">Ingresa un correo válido que termine en ".com".</span>
+          </div>
         </div>
+
+        <!-- Contraseña -->
         <div>
           <label for="password" class="block text-3xl pb-3 font-semibold text-gray-700">Contraseña:</label>
-          <input [(ngModel)]="credentials.password" type="password" id="password" class="w-full h-14 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500 text-2xl" placeholder="Contraseña" name="password">
+          <input
+            [(ngModel)]="credentials.password"
+            #password="ngModel"
+            type="password"
+            id="password"
+            class="w-full h-14 px-4 py-2 border rounded focus:outline-none focus:ring-2 text-2xl"
+            placeholder="Contraseña"
+            name="password"
+            required
+            [ngClass]="{
+              'border-gray-300 focus:ring-green-500': password.valid || !password.touched,
+              'border-red-500 focus:ring-red-500': password.invalid && password.touched
+            }">
+          <div *ngIf="password.invalid && password.touched" class="text-red-500">
+            La contraseña es obligatoria.
+          </div>
         </div>
-        <button type="submit" class="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-3 px-4 rounded text-2xl">Iniciar sesión</button>
+
+        <!-- Botón -->
+        <button
+          type="submit"
+          class="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-3 px-4 rounded text-2xl"
+          >
+          Iniciar sesión
+        </button>
       </form>
+
       <p class="mt-4 text-center">¿AÚN NO TIENES UNA CUENTA? <a routerLink="/register" class="text-blue-500">REGÍSTRATE</a></p>
     </div>
   </div>
-</div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Usuario } from '../../models/usuario';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-profile',
@@ -52,12 +53,34 @@ export class EditProfileComponent implements OnInit {
         ...this.editForm.value,
       };
 
-      this.userService.updateUser(this.idusuario, updatedUser).subscribe(() => {
-        alert('Perfil actualizado exitosamente');
-        this.router.navigate(['/personal-info']);
+      this.userService.updateUser(this.idusuario, updatedUser).subscribe({
+        next: () => {
+          // SweetAlert de éxito
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '¡Perfil actualizado correctamente!',
+            showConfirmButton: false,
+            timer: 900, // La alerta se cerrará automáticamente después de 1.5 segundos
+          });
+
+          setTimeout(() => {
+            this.router.navigate(['/personal-info']); // Navegar a la vista de información personal
+          }, 900); // Espera un poco más que el tiempo de la alerta
+        },
+        error: (error) => {
+          // SweetAlert de error
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar el perfil',
+            text: 'Por favor, intenta nuevamente.',
+          });
+          console.error('Error al actualizar el perfil:', error);
+        },
       });
     }
   }
+
 
 
   toggleDropdown() {
@@ -69,9 +92,24 @@ export class EditProfileComponent implements OnInit {
     this.showDropdown = false;
   }
 
+
   logout() {
     localStorage.clear(); // Limpiar todos los datos de sesión
-    this.router.navigate(['/']); // Redireccionar a la vista principal
+
+    // Mostrar SweetAlert para notificar el cierre de sesión exitoso
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Hasta pronto',
+      text: 'Te esperamos de vuelta',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+
+    // Redirigir a la vista principal después de un breve retraso
+    setTimeout(() => {
+      this.router.navigate(['/']); // Navegar a la vista principal
+    }, 1000);
   }
-  
+
 }
