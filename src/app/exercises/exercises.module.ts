@@ -6,13 +6,17 @@ import { ExercisesSectionComponent } from './exercises-section/exercises-section
 import { ExerciseDetailComponent } from './exercise-detail/exercise-detail.component';
 import { FormsModule } from '@angular/forms';
 import { EjercicioCardComponent } from './ejercicio-card/ejercicio-card.component';
+import { RoutinesSectionComponent } from './routines-section/routines-section.component';
+import { RoutinesDetailComponent } from './routines-detail/routines-detail.component';
 
 
 @NgModule({
   declarations: [
     ExercisesSectionComponent,
     ExerciseDetailComponent,
-    EjercicioCardComponent
+    EjercicioCardComponent,
+    RoutinesSectionComponent,
+    RoutinesDetailComponent
   ],
   imports: [
     CommonModule,

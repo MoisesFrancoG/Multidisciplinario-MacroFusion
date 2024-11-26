@@ -2,24 +2,19 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-exercises-section',
-  templateUrl: './exercises-section.component.html',
-  // styleUrl: './exercises-section.component.css'
+  selector: 'app-routines-section',
+  templateUrl: './routines-section.component.html',
+  // styleUrl: './routines-section.component.css'
 })
-export class ExercisesSectionComponent {
+export class RoutinesSectionComponent {
 
   showDropdown = false;
 
   constructor(private router: Router) {}
 
-  navigateToDetail(zone: string){
-    this.router.navigate(['/exercise-detail', {zone: zone}])
+  navigateToRoutineDetail(routine: string): void{
+    this.router.navigate(['/routine-detail', routine])
   }
-
-  navigateToRoutines(){
-    this.router.navigate(['/routines'])
-  }
-
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
@@ -34,6 +29,5 @@ export class ExercisesSectionComponent {
     localStorage.clear(); // Limpiar todos los datos de sesión
     this.router.navigate(['/']); // Redireccionar a la vista principal
   }
-
 
 }

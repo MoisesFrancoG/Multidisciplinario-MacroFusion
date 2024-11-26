@@ -4,7 +4,15 @@
     <img routerLink="/dashboard" src="/assets/logoMF.jpg" alt="MacroFusion Logo" class="w-20 cursor-pointer">
     <span class="font-bold text-6xl pl-6">MacroFusion</span>
   </div>
-  <img routerLink="/personal-info" src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer">
+
+  <div class="relative">
+    <img src="/assets/perfil.png" alt="Perfil" class="h-14 w-14 rounded-full cursor-pointer transition-transform duration-200 ease-in-out transform hover:scale-105" (click)="toggleDropdown()">
+
+    <div *ngIf="showDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+      <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" routerLink="/personal-info">Perfil</a>
+      <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" (click)="logout()">Cerrar Sesión</a>
+    </div>
+  </div>
 </div>
 
 <!-- BASKET CONTENT -->

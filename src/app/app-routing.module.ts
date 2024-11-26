@@ -11,6 +11,8 @@ import { AddFoodComponent } from './basket/add-food/add-food.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 import { ExerciseDetailComponent } from './exercises/exercise-detail/exercise-detail.component';
+import { RoutinesSectionComponent } from './exercises/routines-section/routines-section.component';
+import { RoutinesDetailComponent } from './exercises/routines-detail/routines-detail.component';
 
 // const routes: Routes = [
 //   { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
@@ -38,6 +40,8 @@ const routes: Routes = [
   //RUTAS EJERCICIOS
   { path: 'ejercicios', component: ExercisesSectionComponent},
   { path: 'exercise-detail', component: ExerciseDetailComponent},
+  { path: 'routines', component: RoutinesSectionComponent },
+  { path: 'routine-detail/:routine', component: RoutinesDetailComponent },
   // RUTAS COMIDAS
   { path: 'comidas', component: MealsDashboardComponent },
 

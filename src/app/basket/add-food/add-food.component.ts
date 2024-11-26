@@ -13,6 +13,7 @@ import { Food } from '../../models/food';
 })
 export class AddFoodComponent {
 
+  showDropdown = false;
   editMode: boolean = false; // Decide si el formulario es para editar o agregar
   foodId: number = 0;
 
@@ -70,6 +71,20 @@ export class AddFoodComponent {
         }
       });
     }
+  }
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
+
+  closeDropdown() {
+    event?.stopPropagation();
+    this.showDropdown = false;
+  }
+
+  logout() {
+    localStorage.clear(); // Limpiar todos los datos de sesión
+    this.router.navigate(['/']); // Redireccionar a la vista principal
   }
 
 
