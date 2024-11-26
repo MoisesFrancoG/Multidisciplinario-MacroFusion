@@ -12,23 +12,23 @@
     <div class="grid grid-cols-3 ">
       <div class="bg-green-800 text-white p-6 flex flex-col items-center ">
         <span class="text-4xl font-bold">Estatura</span>
-        <span class="text-3xl font-semibold">1.63 cm</span>
+        <span class="text-3xl font-semibold">{{usuario?.estatura}} cm </span>
       </div>
       <div class="bg-green-600 text-white p-6 flex flex-col items-center col-span-2 ">
         <span class="text-4xl font-bold">Índice de actividad</span>
-        <span class="text-3xl font-semibold">Regularmente</span>
+        <span class="text-3xl font-semibold">{{textoActividad}}</span>
       </div>
       <div class="bg-green-600 text-white p-6 flex flex-col items-center ">
         <span class="text-4xl font-bold">Peso</span>
-        <span class="text-3xl font-semibold">58 kg</span>
+        <span class="text-3xl font-semibold">{{usuario?.peso}} kg</span>
       </div>
       <div class="bg-green-500 text-white p-6 flex flex-col items-center ">
         <span class="text-4xl font-bold">Sexo</span>
-        <span class="text-3xl font-semibold">Mujer</span>
+        <span class="text-3xl font-semibold">{{usuario?.sexo}}</span>
       </div>
       <div class="bg-green-900 text-white p-6 flex flex-col items-center ">
         <span class="text-4xl font-bold">Edad</span>
-        <span class="text-3xl font-semibold">20</span>
+        <span class="text-3xl font-semibold">{{usuario?.edad}}</span>
       </div>
     </div>
     <div class="flex justify-end mt-10">
