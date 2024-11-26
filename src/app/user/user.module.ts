@@ -6,6 +6,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 // import { User } from '../../models/user.model';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'dashboard', component: UserDashboardComponent }
@@ -20,6 +21,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     UserRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
     // RouterModule.forChild(routes)
   ],
   exports: [
