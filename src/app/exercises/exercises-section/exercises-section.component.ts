@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-exercises-section',
@@ -8,12 +9,29 @@ import { Router } from '@angular/router';
 })
 export class ExercisesSectionComponent {
 
+  isLoading: boolean = false; // Controla la visibilidad del loader
   showDropdown = false;
 
   constructor(private router: Router) {}
 
   navigateToDetail(zone: string){
     this.router.navigate(['/exercise-detail', {zone: zone}])
+  }
+
+  navigateToDetailWithLoader(zone: string): void {
+    this.isLoading = true; // Muestra la pantalla de carga
+    setTimeout(() => {
+      this.isLoading = false; // Oculta la pantalla de carga después de 1.5 segundos
+      this.router.navigate(['/exercise-detail', { zone }]);
+    }, 1000);
+  }
+
+  navigateToRoutinesWithLoader(): void {
+    this.isLoading = true; // Muestra la pantalla de carga
+    setTimeout(() => {
+      this.isLoading = false; // Oculta la pantalla de carga después de 1.5 segundos
+      this.router.navigate(['/routines']);
+    }, 1000);
   }
 
   navigateToRoutines(){
@@ -30,9 +48,24 @@ export class ExercisesSectionComponent {
     this.showDropdown = false;
   }
 
+
   logout() {
     localStorage.clear(); // Limpiar todos los datos de sesión
-    this.router.navigate(['/']); // Redireccionar a la vista principal
+
+    // Mostrar SweetAlert para notificar el cierre de sesión exitoso
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Hasta pronto',
+      text: 'Te esperamos de vuelta',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+
+    // Redirigir a la vista principal después de un breve retraso
+    setTimeout(() => {
+      this.router.navigate(['/']); // Navegar a la vista principal
+    }, 1000);
   }
 
 

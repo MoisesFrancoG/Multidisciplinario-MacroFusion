@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RutineService } from '../../services/rutine.service';// Importar el servicio
 import { Ejercicio } from '../../models/Ejercicio';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-routines-detail',
@@ -16,7 +17,7 @@ export class RoutinesDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private rutineService: RutineService 
+    private rutineService: RutineService
   ) {}
 
   ngOnInit(): void {
@@ -41,9 +42,24 @@ export class RoutinesDetailComponent implements OnInit {
     this.showDropdown = false;
   }
 
+
   logout() {
-    localStorage.clear(); 
-    this.router.navigate(['/']); 
+    localStorage.clear(); // Limpiar todos los datos de sesión
+
+    // Mostrar SweetAlert para notificar el cierre de sesión exitoso
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Hasta pronto',
+      text: 'Te esperamos de vuelta',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+
+    // Redirigir a la vista principal después de un breve retraso
+    setTimeout(() => {
+      this.router.navigate(['/']); // Navegar a la vista principal
+    }, 1000);
   }
 
   loadTitle(id: number): void {
@@ -52,7 +68,7 @@ export class RoutinesDetailComponent implements OnInit {
         this.title = "EJERCICIOS EN CASA"
         break
 
-      case 2: 
+      case 2:
         this.title = "CALISTENIA"
         break
 

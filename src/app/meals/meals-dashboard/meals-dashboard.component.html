@@ -67,7 +67,7 @@
   <!-- SECCIÓN DE DESAYUNO -->
   <div class="flex justify-between items-center mb-2">
     <span class="text-xl font-bold">Resumen</span>
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="openModal()">Agregar alimento</button>
+    <button class="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded" (click)="openModal()">Agregar alimento</button>
   </div>
   <h2 class="text-2xl font-bold mb-2">Desayuno</h2>
   <div class="bg-gray-100 p-4 rounded-lg">
@@ -92,7 +92,7 @@
           <td class="py-4 px-6">{{ meal.carbohidratos }} gr</td>
           <td class="py-4 px-6">{{ meal.porcion }} {{ meal.tipomedida }}</td>
           <td class="py-4 px-6">
-            <button class="bg-red-600 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
+            <button class="bg-green-500 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
               <img src="assets/eliminar.png" class="w-7" alt="Eliminar">
             </button>
           </td>
@@ -125,7 +125,7 @@
           <td class="py-4 px-6">{{ meal.carbohidratos }} gr</td>
           <td class="py-4 px-6">{{ meal.porcion }} {{ meal.tipomedida }}</td>
           <td class="py-4 px-6">
-            <button class="bg-red-600 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
+            <button class="bg-green-500 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
               <img src="assets/eliminar.png" class="w-7" alt="Eliminar">
             </button>
           </td>
@@ -158,7 +158,7 @@
           <td class="py-4 px-6">{{ meal.carbohidratos }} gr</td>
           <td class="py-4 px-6">{{ meal.porcion }} {{ meal.tipomedida }}</td>
           <td class="py-4 px-6">
-            <button class="bg-red-600 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
+            <button class="bg-green-500 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
               <img src="assets/eliminar.png" class="w-7" alt="Eliminar">
             </button>
           </td>
@@ -166,6 +166,41 @@
       </tbody>
     </table>
   </div>
+
+
+    <!-- SECCIÓN DE COLACIÓN -->
+    <h2 class="text-2xl font-bold mb-2 mt-6">Colación</h2>
+    <div class="bg-gray-100 p-4 rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" class="py-3 px-6">Alimento</th>
+            <th scope="col" class="py-3 px-6">Aporte</th>
+            <th scope="col" class="py-3 px-6">Grasas</th>
+            <th scope="col" class="py-3 px-6">Proteinas</th>
+            <th scope="col" class="py-3 px-6">Carbohidratos</th>
+            <th scope="col" class="py-3 px-6">Cantidad</th>
+            <th scope="col" class="py-3 px-6">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let meal of colacionMeals" class="bg-white border-b">
+            <td class="py-4 px-6">{{ meal.nombre }}</td>
+            <td class="py-4 px-6">{{ meal.calorias }} Kcal</td>
+            <td class="py-4 px-6">{{ meal.grasa }} gr</td>
+            <td class="py-4 px-6">{{ meal.proteina }} gr</td>
+            <td class="py-4 px-6">{{ meal.carbohidratos }} gr</td>
+            <td class="py-4 px-6">{{ meal.porcion }} {{ meal.tipomedida }}</td>
+            <td class="py-4 px-6">
+              <button class="bg-green-500 p-2 rounded-lg" (click)="deleteMeal(meal.idlistaalimentos)">
+                <img src="assets/eliminar.png" class="w-7" alt="Eliminar">
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
 
 </div>
 

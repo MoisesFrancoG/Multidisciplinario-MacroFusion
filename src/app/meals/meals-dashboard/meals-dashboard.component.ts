@@ -9,6 +9,7 @@ import { Usuario } from '../../models/usuario';
 import { UserService } from '../../services/user.service';
 import { MacrosService } from '../../services/macros.service';
 import { Macro } from '../../models/Macro';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-meals-dashboard',
@@ -25,6 +26,8 @@ export class MealsDashboardComponent implements OnInit{
   desayunoMeals: FoodConsumption[] = [];
   comidaMeals: FoodConsumption[] = [];
   cenaMeals: FoodConsumption[] = [];
+  colacionMeals: FoodConsumption[] = [];
+
   userId = parseInt(localStorage.getItem('user_id') || '0', 10);
   idConsumo: number | null = null;
   listaAlimentos: ListaAlimentos | null = null
@@ -55,6 +58,7 @@ export class MealsDashboardComponent implements OnInit{
     this.desayunoMeals = [];
     this.comidaMeals = [];
     this.cenaMeals = [];
+    this.colacionMeals = [];
     this.idConsumo = null;
 
     // Load the current user's consumo ID
@@ -125,6 +129,9 @@ export class MealsDashboardComponent implements OnInit{
     this.cenaMeals = this.meals.filter(
       (meal) => meal.categoriacomida === 'Cena'
     );
+    this.colacionMeals = this.meals.filter(
+      (meal) => meal.categoriacomida === 'Colacion'
+    );
   }
 
   deleteMeal(id: number | undefined): void {
@@ -184,9 +191,24 @@ export class MealsDashboardComponent implements OnInit{
     this.showDropdown = false;
   }
 
+
   logout() {
     localStorage.clear(); // Limpiar todos los datos de sesión
-    this.router.navigate(['/']); // Redireccionar a la vista principal
+
+    // Mostrar SweetAlert para notificar el cierre de sesión exitoso
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Hasta pronto',
+      text: 'Te esperamos de vuelta',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+
+    // Redirigir a la vista principal después de un breve retraso
+    setTimeout(() => {
+      this.router.navigate(['/']); // Navegar a la vista principal
+    }, 1000);
   }
 
   // Cargar datos del usuario desde el servicio
@@ -215,7 +237,7 @@ export class MealsDashboardComponent implements OnInit{
     if (!this.userData || !this.userData.peso || !this.userData.estatura || !this.userData.edad || !this.userData.sexo || !this.userData.indiceactividad) {
       console.error('Faltan datos necesarios para calcular los macronutrientes.');
       return;
-    } 
+    }
     const weight = this.userData.peso; // Peso en kg
     const height = this.userData.estatura; // Estatura en cm
     const age = this.userData.edad; // Edad en años
