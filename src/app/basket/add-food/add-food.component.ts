@@ -126,8 +126,10 @@ export class AddFoodComponent {
       text: 'Los cambios no se guardarán.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#22c55e', // Verde (bg-green-500)
+      cancelButtonColor: '#22c55e',
+      color: 'black',
+      iconColor: 'black',
       confirmButtonText: 'Sí, cancelar',
       cancelButtonText: 'No, continuar',
     }).then((result) => {
@@ -138,8 +140,12 @@ export class AddFoodComponent {
         // SweetAlert de acción no cancelada
         Swal.fire({
           icon: 'info',
-          title: 'Acción no cancelada',
+          title: 'Acción cancelada',
           text: 'Puedes continuar con tu registro.',
+          confirmButtonColor: '#22c55e', // Verde (bg-green-500)
+          cancelButtonColor: '#22c55e',
+          color: 'black',
+          iconColor: 'black',
         });
       }
     });
